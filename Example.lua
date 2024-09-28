@@ -13,7 +13,7 @@ local Window = Library:CreateWindow({
     -- Position and Size are also valid options here
     -- but you do not need to define them unless you are changing them :)
 
-    Title = 'f user : '..tostring(game.Players.LocalPlayer.Name)',
+    Title = 'geek.<font color="#f8d4e4">bar</font>',
     Center = true,
     AutoShow = true,
     TabPadding = 8,
@@ -386,7 +386,7 @@ Library:SetWatermarkVisibility(true)
 
 -- Example of dynamically-updating watermark with common traits (fps and ping)
 
-    Library:SetWatermark(geek.<font color="#f8d4e4">bar</font>)
+    Library:SetWatermark('geek.<font color="#f8d4e4">bar</font>')
 
 
 Library.KeybindFrame.Visible = true; -- todo: add a function for this
