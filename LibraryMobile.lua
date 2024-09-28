@@ -191,7 +191,7 @@ end;
 
 function Library:AddToolTip(InfoStr, HoverInstance)
     local X, Y = Library:GetTextBounds(InfoStr, Library.Font, 14);
-    local Tooltip = Library:Create('Frame', {
+    local Tooltip = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.MainColor,
         BorderColor3 = Library.OutlineColor,
 
@@ -433,7 +433,7 @@ do
 
         ColorPicker:SetHSVFromRGB(ColorPicker.Value);
 
-        local DisplayFrame = Library:Create('Frame', {
+        local DisplayFrame = Library:Create('CanvasGroup', {
             BackgroundColor3 = ColorPicker.Value;
             BorderColor3 = Library:GetDarkerColor(ColorPicker.Value);
             BorderMode = Enum.BorderMode.Inset;
@@ -457,7 +457,7 @@ do
         -- There was some issue which caused RelativeOffset to be way off
         -- Thus the color picker would never show
 
-        local PickerFrameOuter = Library:Create('Frame', {
+        local PickerFrameOuter = Library:Create('CanvasGroup', {
             Name = 'Color';
             BackgroundColor3 = Color3.new(1, 1, 1);
             BorderColor3 = Color3.new(0, 0, 0);
@@ -472,7 +472,7 @@ do
             PickerFrameOuter.Position = UDim2.fromOffset(DisplayFrame.AbsolutePosition.X, DisplayFrame.AbsolutePosition.Y + 18);
         end)
 
-        local PickerFrameInner = Library:Create('Frame', {
+        local PickerFrameInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.BackgroundColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -481,7 +481,7 @@ do
             Parent = PickerFrameOuter;
         });
 
-        local Highlight = Library:Create('Frame', {
+        local Highlight = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.AccentColor;
             BorderSizePixel = 0;
             Size = UDim2.new(1, 0, 0, 2);
@@ -489,7 +489,7 @@ do
             Parent = PickerFrameInner;
         });
 
-        local SatVibMapOuter = Library:Create('Frame', {
+        local SatVibMapOuter = Library:Create('CanvasGroup', {
             BorderColor3 = Color3.new(0, 0, 0);
             Position = UDim2.new(0, 4, 0, 25);
             Size = UDim2.new(0, 200, 0, 200);
@@ -497,7 +497,7 @@ do
             Parent = PickerFrameInner;
         });
 
-        local SatVibMapInner = Library:Create('Frame', {
+        local SatVibMapInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.BackgroundColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -533,7 +533,7 @@ do
             Parent = CursorOuter;
         })
 
-        local HueSelectorOuter = Library:Create('Frame', {
+        local HueSelectorOuter = Library:Create('CanvasGroup', {
             BorderColor3 = Color3.new(0, 0, 0);
             Position = UDim2.new(0, 208, 0, 25);
             Size = UDim2.new(0, 15, 0, 200);
@@ -541,7 +541,7 @@ do
             Parent = PickerFrameInner;
         });
 
-        local HueSelectorInner = Library:Create('Frame', {
+        local HueSelectorInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(1, 1, 1);
             BorderSizePixel = 0;
             Size = UDim2.new(1, 0, 1, 0);
@@ -549,7 +549,7 @@ do
             Parent = HueSelectorOuter;
         });
 
-        local HueCursor = Library:Create('Frame', { 
+        local HueCursor = Library:Create('CanvasGroup', { 
             BackgroundColor3 = Color3.new(1, 1, 1);
             AnchorPoint = Vector2.new(0, 0.5);
             BorderColor3 = Color3.new(0, 0, 0);
@@ -558,7 +558,7 @@ do
             Parent = HueSelectorInner;
         });
 
-        local HueBoxOuter = Library:Create('Frame', {
+        local HueBoxOuter = Library:Create('CanvasGroup', {
             BorderColor3 = Color3.new(0, 0, 0);
             Position = UDim2.fromOffset(4, 228),
             Size = UDim2.new(0.5, -6, 0, 20),
@@ -566,7 +566,7 @@ do
             Parent = PickerFrameInner;
         });
 
-        local HueBoxInner = Library:Create('Frame', {
+        local HueBoxInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -617,7 +617,7 @@ do
         local TransparencyBoxOuter, TransparencyBoxInner, TransparencyCursor;
         
         if Info.Transparency then 
-            TransparencyBoxOuter = Library:Create('Frame', {
+            TransparencyBoxOuter = Library:Create('CanvasGroup', {
                 BorderColor3 = Color3.new(0, 0, 0);
                 Position = UDim2.fromOffset(4, 251);
                 Size = UDim2.new(1, -8, 0, 15);
@@ -625,7 +625,7 @@ do
                 Parent = PickerFrameInner;
             });
 
-            TransparencyBoxInner = Library:Create('Frame', {
+            TransparencyBoxInner = Library:Create('CanvasGroup', {
                 BackgroundColor3 = ColorPicker.Value;
                 BorderColor3 = Library.OutlineColor;
                 BorderMode = Enum.BorderMode.Inset;
@@ -644,7 +644,7 @@ do
                 Parent = TransparencyBoxInner;
             });
 
-            TransparencyCursor = Library:Create('Frame', { 
+            TransparencyCursor = Library:Create('CanvasGroup', { 
                 BackgroundColor3 = Color3.new(1, 1, 1);
                 AnchorPoint = Vector2.new(0.5, 0);
                 BorderColor3 = Color3.new(0, 0, 0);
@@ -669,7 +669,7 @@ do
         local ContextMenu = {}
         do
             ContextMenu.Options = {}
-            ContextMenu.Container = Library:Create('Frame', {
+            ContextMenu.Container = Library:Create('CanvasGroup', {
                 BorderColor3 = Color3.new(),
                 ZIndex = 14,
 
@@ -677,7 +677,7 @@ do
                 Parent = ScreenGui
             })
 
-            ContextMenu.Inner = Library:Create('Frame', {
+            ContextMenu.Inner = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.BackgroundColor;
                 BorderColor3 = Library.OutlineColor;
                 BorderMode = Enum.BorderMode.Inset;
@@ -1023,7 +1023,7 @@ do
             Info.Mode = 'Toggle'
         end
 
-        local PickOuter = Library:Create('Frame', {
+        local PickOuter = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
             Size = UDim2.new(0, 28, 0, 15);
@@ -1031,7 +1031,7 @@ do
             Parent = ToggleLabel;
         });
 
-        local PickInner = Library:Create('Frame', {
+        local PickInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.BackgroundColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -1054,7 +1054,7 @@ do
             Parent = PickInner;
         });
 
-        local ModeSelectOuter = Library:Create('Frame', {
+        local ModeSelectOuter = Library:Create('CanvasGroup', {
             BorderColor3 = Color3.new(0, 0, 0);
             Position = UDim2.fromOffset(ToggleLabel.AbsolutePosition.X + ToggleLabel.AbsoluteSize.X + 4, ToggleLabel.AbsolutePosition.Y + 1);
             Size = UDim2.new(0, 60, 0, 45 + 2);
@@ -1067,7 +1067,7 @@ do
             ModeSelectOuter.Position = UDim2.fromOffset(ToggleLabel.AbsolutePosition.X + ToggleLabel.AbsoluteSize.X + 4, ToggleLabel.AbsolutePosition.Y + 1);
         end);
 
-        local ModeSelectInner = Library:Create('Frame', {
+        local ModeSelectInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.BackgroundColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -1342,7 +1342,7 @@ do
         local Groupbox = self;
         local Container = Groupbox.Container;
 
-        Library:Create('Frame', {
+        Library:Create('CanvasGroup', {
             BackgroundTransparency = 1;
             Size = UDim2.new(1, 0, 0, Size);
             ZIndex = 1;
@@ -1427,14 +1427,14 @@ do
         local Container = Groupbox.Container;
 
         local function CreateBaseButton(Button)
-            local Outer = Library:Create('Frame', {
+            local Outer = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Color3.new(0, 0, 0);
                 BorderColor3 = Color3.new(0, 0, 0);
                 Size = UDim2.new(1, -4, 0, 20);
                 ZIndex = 5;
             });
 
-            local Inner = Library:Create('Frame', {
+            local Inner = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.MainColor;
                 BorderColor3 = Library.OutlineColor;
                 BorderMode = Enum.BorderMode.Inset;
@@ -1599,7 +1599,7 @@ do
         }
 
         Groupbox:AddBlank(2);
-        local DividerOuter = Library:Create('Frame', {
+        local DividerOuter = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
             Size = UDim2.new(1, -4, 0, 5);
@@ -1607,7 +1607,7 @@ do
             Parent = Container;
         });
 
-        local DividerInner = Library:Create('Frame', {
+        local DividerInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -1654,7 +1654,7 @@ do
 
         Groupbox:AddBlank(1);
 
-        local TextBoxOuter = Library:Create('Frame', {
+        local TextBoxOuter = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
             Size = UDim2.new(1, -4, 0, 20);
@@ -1662,7 +1662,7 @@ do
             Parent = Container;
         });
 
-        local TextBoxInner = Library:Create('Frame', {
+        local TextBoxInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -1694,7 +1694,7 @@ do
             Parent = TextBoxInner;
         });
 
-        local Container = Library:Create('Frame', {
+        local Container = Library:Create('CanvasGroup', {
             BackgroundTransparency = 1;
             ClipsDescendants = true;
 
@@ -1829,7 +1829,7 @@ do
         local Groupbox = self;
         local Container = Groupbox.Container;
 
-        local ToggleOuter = Library:Create('Frame', {
+        local ToggleOuter = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
             Size = UDim2.new(0, 13, 0, 13);
@@ -1841,7 +1841,7 @@ do
             BorderColor3 = 'Black';
         });
 
-        local ToggleInner = Library:Create('Frame', {
+        local ToggleInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -1873,7 +1873,7 @@ do
             Parent = ToggleLabel;
         });
 
-        local ToggleRegion = Library:Create('Frame', {
+        local ToggleRegion = Library:Create('CanvasGroup', {
             BackgroundTransparency = 1;
             Size = UDim2.new(0, 170, 1, 0);
             ZIndex = 8;
@@ -1986,7 +1986,7 @@ do
             Groupbox:AddBlank(3);
         end
 
-        local SliderOuter = Library:Create('Frame', {
+        local SliderOuter = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
             Size = UDim2.new(1, -4, 0, 13);
@@ -1998,7 +1998,7 @@ do
             BorderColor3 = 'Black';
         });
 
-        local SliderInner = Library:Create('Frame', {
+        local SliderInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -2012,7 +2012,7 @@ do
             BorderColor3 = 'OutlineColor';
         });
 
-        local Fill = Library:Create('Frame', {
+        local Fill = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.AccentColor;
             BorderColor3 = Library.AccentColorDark;
             Size = UDim2.new(0, 0, 1, 0);
@@ -2025,7 +2025,7 @@ do
             BorderColor3 = 'AccentColorDark';
         });
 
-        local HideBorderRight = Library:Create('Frame', {
+        local HideBorderRight = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.AccentColor;
             BorderSizePixel = 0;
             Position = UDim2.new(1, 0, 0, 0);
@@ -2198,7 +2198,7 @@ do
             end;
         end;
 
-        local DropdownOuter = Library:Create('Frame', {
+        local DropdownOuter = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
             Size = UDim2.new(1, -4, 0, 20);
@@ -2210,7 +2210,7 @@ do
             BorderColor3 = 'Black';
         });
 
-        local DropdownInner = Library:Create('Frame', {
+        local DropdownInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -2265,7 +2265,7 @@ do
 
         local MAX_DROPDOWN_ITEMS = 8;
 
-        local ListOuter = Library:Create('Frame', {
+        local ListOuter = Library:Create('CanvasGroup', {
             BackgroundColor3 = Color3.new(0, 0, 0);
             BorderColor3 = Color3.new(0, 0, 0);
             ZIndex = 20;
@@ -2286,7 +2286,7 @@ do
 
         DropdownOuter:GetPropertyChangedSignal('AbsolutePosition'):Connect(RecalculateListPosition);
 
-        local ListInner = Library:Create('Frame', {
+        local ListInner = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderColor3 = Library.OutlineColor;
             BorderMode = Enum.BorderMode.Inset;
@@ -2377,7 +2377,7 @@ do
 
                 Count = Count + 1;
 
-                local Button = Library:Create('Frame', {
+                local Button = Library:Create('CanvasGroup', {
                     BackgroundColor3 = Library.MainColor;
                     BorderColor3 = Library.OutlineColor;
                     BorderMode = Enum.BorderMode.Middle;
@@ -2603,14 +2603,14 @@ do
         local Groupbox = self;
         local Container = Groupbox.Container;
 
-        local Holder = Library:Create('Frame', {
+        local Holder = Library:Create('CanvasGroup', {
             BackgroundTransparency = 1;
             Size = UDim2.new(1, 0, 0, 0);
             Visible = false;
             Parent = Container;
         });
 
-        local Frame = Library:Create('Frame', {
+        local Frame = Library:Create('CanvasGroup', {
             BackgroundTransparency = 1;
             Size = UDim2.new(1, 0, 1, 0);
             Visible = true;
@@ -2680,7 +2680,7 @@ end;
 
 -- < Create other UI elements >
 do
-    Library.NotificationArea = Library:Create('Frame', {
+    Library.NotificationArea = Library:Create('CanvasGroup', {
         BackgroundTransparency = 1;
         Position = UDim2.new(0, 0, 0, 40);
         Size = UDim2.new(0, 300, 0, 200);
@@ -2695,7 +2695,7 @@ do
         Parent = Library.NotificationArea;
     });
 
-    local WatermarkOuter = Library:Create('Frame', {
+    local WatermarkOuter = Library:Create('CanvasGroup', {
         BorderColor3 = Color3.new(0, 0, 0);
         Position = UDim2.new(0, 100, 0, -25);
         Size = UDim2.new(0, 213, 0, 20);
@@ -2704,7 +2704,7 @@ do
         Parent = ScreenGui;
     });
 
-    local WatermarkInner = Library:Create('Frame', {
+    local WatermarkInner = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.AccentColor;
         BorderMode = Enum.BorderMode.Inset;
@@ -2717,7 +2717,7 @@ do
         BorderColor3 = 'AccentColor';
     });
 
-    local InnerFrame = Library:Create('Frame', {
+    local InnerFrame = Library:Create('CanvasGroup', {
         BackgroundColor3 = Color3.new(1, 1, 1);
         BorderSizePixel = 0;
         Position = UDim2.new(0, 1, 0, 1);
@@ -2760,7 +2760,7 @@ do
 
 
 
-    local KeybindOuter = Library:Create('Frame', {
+    local KeybindOuter = Library:Create('CanvasGroup', {
         AnchorPoint = Vector2.new(0, 0.5);
         BorderColor3 = Color3.new(0, 0, 0);
         Position = UDim2.new(0, 10, 0.5, 0);
@@ -2770,7 +2770,7 @@ do
         Parent = ScreenGui;
     });
 
-    local KeybindInner = Library:Create('Frame', {
+    local KeybindInner = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
         BorderMode = Enum.BorderMode.Inset;
@@ -2784,7 +2784,7 @@ do
         BorderColor3 = 'OutlineColor';
     }, true);
 
-    local ColorFrame = Library:Create('Frame', {
+    local ColorFrame = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.AccentColor;
         BorderSizePixel = 0;
         Size = UDim2.new(1, 0, 0, 2);
@@ -2806,7 +2806,7 @@ do
         Parent = KeybindInner;
     });
 
-    local KeybindContainer = Library:Create('Frame', {
+    local KeybindContainer = Library:Create('CanvasGroup', {
         BackgroundTransparency = 1;
         Size = UDim2.new(1, 0, 1, -20);
         Position = UDim2.new(0, 0, 0, 20);
@@ -2847,7 +2847,7 @@ function Library:Notify(Text, Time)
 
     YSize = YSize + 7
 
-    local NotifyOuter = Library:Create('Frame', {
+    local NotifyOuter = Library:Create('CanvasGroup', {
         BorderColor3 = Color3.new(0, 0, 0);
         Position = UDim2.new(0, 100, 0, 10);
         Size = UDim2.new(0, 0, 0, YSize);
@@ -2856,7 +2856,7 @@ function Library:Notify(Text, Time)
         Parent = Library.NotificationArea;
     });
 
-    local NotifyInner = Library:Create('Frame', {
+    local NotifyInner = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
         BorderMode = Enum.BorderMode.Inset;
@@ -2870,7 +2870,7 @@ function Library:Notify(Text, Time)
         BorderColor3 = 'OutlineColor';
     }, true);
 
-    local InnerFrame = Library:Create('Frame', {
+    local InnerFrame = Library:Create('CanvasGroup', {
         BackgroundColor3 = Color3.new(1, 1, 1);
         BorderSizePixel = 0;
         Position = UDim2.new(0, 1, 0, 1);
@@ -2907,7 +2907,7 @@ function Library:Notify(Text, Time)
         Parent = InnerFrame;
     });
 
-    local LeftColor = Library:Create('Frame', {
+    local LeftColor = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.AccentColor;
         BorderSizePixel = 0;
         Position = UDim2.new(0, -1, 0, -1);
@@ -2973,7 +2973,7 @@ function Library:CreateWindow(...)
 
     Library:MakeDraggable(Outer, 25);
 
-    local Inner = Library:Create('Frame', {
+    local Inner = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.AccentColor;
         BorderMode = Enum.BorderMode.Inset;
@@ -2998,7 +2998,7 @@ function Library:CreateWindow(...)
         RichText = true;
     });
 
-    local MainSectionOuter = Library:Create('Frame', {
+    local MainSectionOuter = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.BackgroundColor;
         BorderColor3 = Library.OutlineColor;
         Position = UDim2.new(0, 8, 0, 25);
@@ -3012,7 +3012,7 @@ function Library:CreateWindow(...)
         BorderColor3 = 'OutlineColor';
     });
 
-    local MainSectionInner = Library:Create('Frame', {
+    local MainSectionInner = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.BackgroundColor;
         BorderColor3 = Color3.new(0, 0, 0);
         BorderMode = Enum.BorderMode.Inset;
@@ -3026,7 +3026,7 @@ function Library:CreateWindow(...)
         BackgroundColor3 = 'BackgroundColor';
     });
 
-    local TabArea = Library:Create('Frame', {
+    local TabArea = Library:Create('CanvasGroup', {
         BackgroundTransparency = 1;
         Position = UDim2.new(0, 8, 0, 8);
         Size = UDim2.new(1, -16, 0, 21);
@@ -3041,7 +3041,7 @@ function Library:CreateWindow(...)
         Parent = TabArea;
     });
 
-    local TabContainer = Library:Create('Frame', {
+    local TabContainer = Library:Create('CanvasGroup', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
         Position = UDim2.new(0, 8, 0, 30);
@@ -3068,7 +3068,7 @@ function Library:CreateWindow(...)
 
         local TabButtonWidth = Library:GetTextBounds(Name, Library.Font, 16);
 
-        local TabButton = Library:Create('Frame', {
+        local TabButton = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.BackgroundColor;
             BorderColor3 = Library.OutlineColor;
             Size = UDim2.new(0, TabButtonWidth + 8 + 4, 1, 0);
@@ -3089,7 +3089,7 @@ function Library:CreateWindow(...)
             Parent = TabButton;
         });
 
-        local Blocker = Library:Create('Frame', {
+        local Blocker = Library:Create('CanvasGroup', {
             BackgroundColor3 = Library.MainColor;
             BorderSizePixel = 0;
             Position = UDim2.new(0, 0, 1, 0);
@@ -3103,7 +3103,7 @@ function Library:CreateWindow(...)
             BackgroundColor3 = 'MainColor';
         });
 
-        local TabFrame = Library:Create('Frame', {
+        local TabFrame = Library:Create('CanvasGroup', {
             Name = 'TabFrame',
             BackgroundTransparency = 1;
             Position = UDim2.new(0, 0, 0, 0);
@@ -3187,7 +3187,7 @@ function Library:CreateWindow(...)
         function Tab:AddGroupbox(Info)
             local Groupbox = {};
 
-            local BoxOuter = Library:Create('Frame', {
+            local BoxOuter = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.BackgroundColor;
                 BorderColor3 = Library.OutlineColor;
                 BorderMode = Enum.BorderMode.Inset;
@@ -3201,7 +3201,7 @@ function Library:CreateWindow(...)
                 BorderColor3 = 'OutlineColor';
             });
 
-            local BoxInner = Library:Create('Frame', {
+            local BoxInner = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.BackgroundColor;
                 BorderColor3 = Color3.new(0, 0, 0);
                 -- BorderMode = Enum.BorderMode.Inset;
@@ -3215,7 +3215,7 @@ function Library:CreateWindow(...)
                 BackgroundColor3 = 'BackgroundColor';
             });
 
-            local Highlight = Library:Create('Frame', {
+            local Highlight = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.AccentColor;
                 BorderSizePixel = 0;
                 Size = UDim2.new(1, 0, 0, 2);
@@ -3237,7 +3237,7 @@ function Library:CreateWindow(...)
                 Parent = BoxInner;
             });
 
-            local Container = Library:Create('Frame', {
+            local Container = Library:Create('CanvasGroup', {
                 BackgroundTransparency = 1;
                 Position = UDim2.new(0, 4, 0, 20);
                 Size = UDim2.new(1, -4, 1, -20);
@@ -3287,7 +3287,7 @@ function Library:CreateWindow(...)
                 Tabs = {};
             };
 
-            local BoxOuter = Library:Create('Frame', {
+            local BoxOuter = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.BackgroundColor;
                 BorderColor3 = Library.OutlineColor;
                 BorderMode = Enum.BorderMode.Inset;
@@ -3301,7 +3301,7 @@ function Library:CreateWindow(...)
                 BorderColor3 = 'OutlineColor';
             });
 
-            local BoxInner = Library:Create('Frame', {
+            local BoxInner = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.BackgroundColor;
                 BorderColor3 = Color3.new(0, 0, 0);
                 -- BorderMode = Enum.BorderMode.Inset;
@@ -3315,7 +3315,7 @@ function Library:CreateWindow(...)
                 BackgroundColor3 = 'BackgroundColor';
             });
 
-            local Highlight = Library:Create('Frame', {
+            local Highlight = Library:Create('CanvasGroup', {
                 BackgroundColor3 = Library.AccentColor;
                 BorderSizePixel = 0;
                 Size = UDim2.new(1, 0, 0, 2);
@@ -3327,7 +3327,7 @@ function Library:CreateWindow(...)
                 BackgroundColor3 = 'AccentColor';
             });
 
-            local TabboxButtons = Library:Create('Frame', {
+            local TabboxButtons = Library:Create('CanvasGroup', {
                 BackgroundTransparency = 1;
                 Position = UDim2.new(0, 0, 0, 1);
                 Size = UDim2.new(1, 0, 0, 18);
@@ -3345,7 +3345,7 @@ function Library:CreateWindow(...)
             function Tabbox:AddTab(Name)
                 local Tab = {};
 
-                local Button = Library:Create('Frame', {
+                local Button = Library:Create('CanvasGroup', {
                     BackgroundColor3 = Library.MainColor;
                     BorderColor3 = Color3.new(0, 0, 0);
                     Size = UDim2.new(0.5, 0, 1, 0);
@@ -3366,7 +3366,7 @@ function Library:CreateWindow(...)
                     Parent = Button;
                 });
 
-                local Block = Library:Create('Frame', {
+                local Block = Library:Create('CanvasGroup', {
                     BackgroundColor3 = Library.BackgroundColor;
                     BorderSizePixel = 0;
                     Position = UDim2.new(0, 0, 1, 0);
@@ -3380,7 +3380,7 @@ function Library:CreateWindow(...)
                     BackgroundColor3 = 'BackgroundColor';
                 });
 
-                local Container = Library:Create('Frame', {
+                local Container = Library:Create('CanvasGroup', {
                     BackgroundTransparency = 1;
                     Position = UDim2.new(0, 4, 0, 20);
                     Size = UDim2.new(1, -4, 1, -20);
@@ -3534,7 +3534,7 @@ function Library:CreateWindow(...)
                 table.insert(Properties, 'BackgroundTransparency');
             elseif Desc:IsA('TextLabel') or Desc:IsA('TextBox') then
                 table.insert(Properties, 'TextTransparency');
-            elseif Desc:IsA('Frame') or Desc:IsA('ScrollingFrame') then
+            elseif Desc:IsA('CanvasGroup') or Desc:IsA('ScrollingFrame') then
                 table.insert(Properties, 'BackgroundTransparency');
             elseif Desc:IsA('UIStroke') then
                 table.insert(Properties, 'Transparency');
